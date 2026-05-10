@@ -1,0 +1,17 @@
+{
+  "name": "harness",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.ts",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Aron Loreskär",
+  "license": "ISC",
+  "packageManager": "pnpm@11.0.9",
+  "devDependencies": {
+    "electron": "^42.0.1"
+  }
+}
