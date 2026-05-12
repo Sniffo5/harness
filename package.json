@@ -5,7 +5,8 @@
   "main": "main.ts",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-builder"
   },
   "keywords": [],
   "author": "Aron Loreskär",
@@ -13,5 +14,23 @@
   "packageManager": "pnpm@11.0.9",
   "devDependencies": {
     "electron": "^42.0.1"
+  },
+  "build": {
+    "appId": "io.sniffo5.harness",
+    "productName": "Sniffo's Harness",
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   }
 }
