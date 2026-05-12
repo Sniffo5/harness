@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # - name: Lint
+      #   run: pnpm run lint
+
+      # - name: Run tests
+      #   run: pnpm test
+
+      - name: Build check
+        run: pnpm run build
+        env:
+          # Prevents electron-builder from trying to publish during a plain build check
+          CSC_IDENTITY_AUTO_DISCOVERY: false
