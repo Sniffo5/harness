@@ -32,6 +32,8 @@ jobs:
   version:
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     outputs:
       new_tag: ${{ steps.tag.outputs.new_tag }}
       changelog: ${{ steps.tag.outputs.changelog }}
@@ -88,7 +90,7 @@ jobs:
           # APPLE_ID: ${{ secrets.APPLE_ID }}
           # APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
           # ──────────────────────────────────────────────────────────────
-        run: pnpm exec electron-builder --${{ matrix.platform }} --publish never
+        run: pnpm exec electron-vite build && pnpm exec electron-builder --${{ matrix.platform }} --publish never
         # --publish never here because we upload assets manually in the next job
 
       - name: Upload build artifacts
@@ -107,6 +109,8 @@ jobs:
   release:
     needs: [version, build]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Download all artifacts
