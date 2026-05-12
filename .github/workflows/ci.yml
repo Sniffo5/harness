@@ -31,7 +31,6 @@ jobs:
       #   run: pnpm test
 
       - name: Build check
-        run: pnpm run build
+        run: pnpm exec electron-vite build && pnpm exec electron-builder --publish never
         env:
-          # Prevents electron-builder from trying to publish during a plain build check
           CSC_IDENTITY_AUTO_DISCOVERY: false
